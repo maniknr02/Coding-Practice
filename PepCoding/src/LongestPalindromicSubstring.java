@@ -1,0 +1,42 @@
+import java.util.*;
+final class LongestPalindromicSubstring {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int count=0;
+		Scanner sc=new Scanner(System.in);
+		String s=sc.next();
+		int n=s.length();
+		boolean dp[][]=new boolean [n][n];
+		for(int g=0;g<n;g++) {
+			for(int i=0,j=g;(j<n);i++,j++) {
+				if(g==0) {
+					dp[i][j]=true;
+				}
+				else if(g == 1) {
+					if(s.charAt(j)==s.charAt(i))
+						dp[i][j]=true;
+				}
+				else {
+					if(s.charAt(i)==s.charAt(j) && dp[i+1][j-1]== true) {
+						dp[i][j]=true;
+					}
+					else {
+						dp[i][j]=false;
+					}
+				}
+				if(dp[i][j]) {
+					count++;
+				}
+			}
+		}
+		System.out.println(count);
+		for(int i=0;i<n;i++) {
+			for(int j=0;j<n;j++) {
+				System.out.print(" "+dp[i][j]);
+			}
+			System.out.println();
+		}
+	}
+
+}
